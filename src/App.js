@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "./App.css"
 import IconButton from "@mui/material/IconButton";
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 
@@ -59,25 +59,35 @@ const App = () => {
     setDeletebutton(false)
 
   }
-  useEffect(() => {    localStorage.setItem("list", JSON.stringify(items));  }, [items]);
+  useEffect(() => { localStorage.setItem("list", JSON.stringify(items)); }, [items]);
 
+  const cancel = () => {
+    setTogglebutton(true)
+    setInput("")
+        setDeletebutton(false)
+
+  }
   return (
     <div className='mainDiv'>
       <form className='childDiv1' onSubmit={toggleButton ? addingData : updateItems} >
         <h1>TODO--"List App"</h1>
         <input type="text" placeholder='Add Details you want to save' value={inputList}
-          maxLength={70} onChange={(e) => setInput(e.target.value)} />
+          maxLength={60} onChange={(e) => setInput(e.target.value)} />
 
-<div className='flex'>
         {
-          toggleButton ? <button  disabled={!inputList?.trim()}><AddIcon /></button> :
-            <button disabled={!inputList?.trim()}>
-              <IconButton>
-                <DriveFileRenameOutlineIcon />
-              </IconButton>
-            </button>
+          <div className='flex'>
+            {toggleButton ? <button disabled={!inputList?.trim()}>Add</button> :
+              <div>
+                <button disabled={!inputList?.trim()}>
+                  UpDate
+                </button>
+                <button onClick={cancel}>
+                  Cancel
+                </button>
+
+              </div>}
+          </div>
         }
-        </div>
       </form>
       <ul className='childDiv2'>
         {
@@ -85,8 +95,11 @@ const App = () => {
             return (
 
               <div className='todolist'>
-                <li> {elem}
-                  <div>
+                <li>
+                <div>
+                 {elem}
+                 </div>
+                  <div className='buttons'>
                     <IconButton onClick={() => deleteItems(index)} disabled={deleteButton}>
                       <DeleteIcon />
                     </IconButton>
