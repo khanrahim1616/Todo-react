@@ -39,6 +39,8 @@ const App = () => {
     setItems([])
     setInput("")
     setTogglebutton(true)
+    setDeletebutton(false)
+
 
   }
   const editItems = (text, id) => {
