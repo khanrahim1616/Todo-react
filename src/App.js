@@ -71,7 +71,7 @@ const App = () => {
     <div className='mainDiv'>
       <form className='childDiv1' onSubmit={toggleButton ? addingData : updateItems} >
         <h1>TODO--"List App"</h1>
-        <input type="text" placeholder='Add Details you want to save' value={inputList}
+        <input type="text" placeholder='Add Items' value={inputList}
           maxLength={60} onChange={(e) => setInput(e.target.value)} />
 
         {
