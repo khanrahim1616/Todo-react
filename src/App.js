@@ -66,14 +66,16 @@ const App = () => {
         <input type="text" placeholder='Add Details you want to save' value={inputList}
           maxLength={70} onChange={(e) => setInput(e.target.value)} />
 
+<div className='flex'>
         {
-          toggleButton ? <button disabled={!inputList?.trim()}><AddIcon /></button> :
+          toggleButton ? <button  disabled={!inputList?.trim()}><AddIcon /></button> :
             <button disabled={!inputList?.trim()}>
               <IconButton>
                 <DriveFileRenameOutlineIcon />
               </IconButton>
             </button>
         }
+        </div>
       </form>
       <ul className='childDiv2'>
         {
